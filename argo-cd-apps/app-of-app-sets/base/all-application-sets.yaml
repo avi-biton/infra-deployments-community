@@ -5,7 +5,7 @@ metadata:
 spec:
   project: default
   source:
-    path: argo-cd-apps/environments/staging
+    path: argo-cd-apps/environments/production
     repoURL: https://github.com/konflux-ci/infra-deployments.git
     targetRevision: main
   destination:
