@@ -16,7 +16,7 @@ spec:
       project: default
       source:
         path: '{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}'
-        repoURL: https://github.com/konflux-ci/infra-deployments.git
+        repoURL: https://github.com/avi-biton/infra-deployments-community.git
         targetRevision: main
       destination:
         server: '{{server}}'
