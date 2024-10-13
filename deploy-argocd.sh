@@ -61,13 +61,11 @@ deploy_keycloak_secret() {
 
 deploy_apps() {
     echo "Deploying applications"
-
-    kubectl apply -k "${ROOT}/argo-cd-apps/dependencies"
+    kubectl apply -k "${ROOT}/argo-cd-apps/app-of-app-sets/staging"
 
     deploy_tekton_secret
     deploy_keycloak_secret
 
-    kubectl apply -k "${ROOT}/argo-cd-apps/konflux-ci"
     echo "Applications deployed"
 }
 
