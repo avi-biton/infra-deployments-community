@@ -5,7 +5,7 @@ metadata:
 spec:
   project: default
   source:
-    path: argo-cd-apps/environments/production
+    path: argo-cd-apps/environments/staging
     repoURL: https://github.com/avi-biton/infra-deployments-community.git
     targetRevision: main
   destination:
