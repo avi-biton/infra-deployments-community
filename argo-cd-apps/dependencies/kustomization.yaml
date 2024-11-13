@@ -3,7 +3,6 @@ kind: Kustomization
 resources:
   - cert-manager
   - trust-manager
-  - registry
   - cluster-issuer
   - tekton-operator
   - tekton-config
