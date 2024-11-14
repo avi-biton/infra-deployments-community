@@ -18,3 +18,13 @@ patches:
     target:
       kind: StatefulSet
       name: tekton-results-postgres              
+
+# generatorOptions:
+#  disableNameSuffixHash: true
+ 
+# secretGenerator:
+# - name: tekton-results-postgres
+#   namespace: tekton-pipelines
+#   literals:
+#     - POSTGRES_USER=postgres
+#     - POSTGRES_PASSWORD=$(openssl rand -base64 20)

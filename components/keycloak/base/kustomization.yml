@@ -5,3 +5,12 @@ resources:
   - https://github.com/konflux-ci/konflux-ci/dependencies/keycloak/crd?ref=da8035d7fa906588d74bc1038ffb236db9deb11f
   - https://github.com/konflux-ci/konflux-ci/dependencies/keycloak/deployment?ref=da8035d7fa906588d74bc1038ffb236db9deb11f
 
+# generatorOptions:
+#  disableNameSuffixHash: true
+ 
+# secretGenerator:
+# - name: keycloak-db-secret
+#   namespace: keycloak
+#   literals:
+#     - POSTGRES_USER=postgres
+#     - POSTGRES_PASSWORD=$(openssl rand -base64 20)

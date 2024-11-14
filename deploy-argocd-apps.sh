@@ -30,47 +30,47 @@ verify_pvc_binding(){
     echo "PVC binding successfull"
 }
 
-deploy_tekton_secret() {
-    if ! kubectl get secret tekton-results-postgres -n tekton-pipelines; then
-        local db_password
-        db_password="$(openssl rand -base64 20)"
-        kubectl create secret generic tekton-results-postgres \
-            --namespace="tekton-pipelines" \
-            --from-literal=POSTGRES_USER=postgres \
-            --from-literal=POSTGRES_PASSWORD="$db_password"
-    fi
-}
+# deploy_tekton_secret() {
+#     if ! kubectl get secret tekton-results-postgres -n tekton-pipelines; then
+#         local db_password
+#         db_password="$(openssl rand -base64 20)"
+#         kubectl create secret generic tekton-results-postgres \
+#             --namespace="tekton-pipelines" \
+#             --from-literal=POSTGRES_USER=postgres \
+#             --from-literal=POSTGRES_PASSWORD="$db_password"
+#     fi
+# }
 
-deploy_keycloak_secret() {
-    if ! kubectl get secret keycloak-db-secret -n keycloak; then
-        local db_password
-        db_password="$(openssl rand -base64 20)"
-        kubectl create secret generic keycloak-db-secret \
-            --namespace=keycloak \
-            --from-literal=POSTGRES_USER=postgres \
-            --from-literal=POSTGRES_PASSWORD="$db_password"
-    fi
-}
+# deploy_keycloak_secret() {
+#     if ! kubectl get secret keycloak-db-secret -n keycloak; then
+#         local db_password
+#         db_password="$(openssl rand -base64 20)"
+#         kubectl create secret generic keycloak-db-secret \
+#             --namespace=keycloak \
+#             --from-literal=POSTGRES_USER=postgres \
+#             --from-literal=POSTGRES_PASSWORD="$db_password"
+#     fi
+# }
 
-check_namespace() {
-    kubectl get namespace "$1" &>/dev/null
-    return $?
-}
+# check_namespace() {
+#     kubectl get namespace "$1" &>/dev/null
+#     return $?
+# }
 
 deploy_apps() {
     environment=$(echo "$1")
     echo "Deploying applications"
     kubectl apply -k "${ROOT}/argo-cd-apps/app-of-app-sets/${environment}"
-    while true; do
-        if check_namespace "tekton-pipelines" && check_namespace "keycloak"; then
-            deploy_tekton_secret
-            deploy_keycloak_secret
-            break
-        else
-            echo -n .
-            sleep 1
-        fi
-    done
+    # while true; do
+    #     if check_namespace "tekton-pipelines"; then
+    #         deploy_tekton_secret
+    #         deploy_keycloak_secret
+    #         break
+    #     else
+    #         echo -n .
+    #         sleep 1
+    #     fi
+    # done
     echo "Applications deployed"
 }
 
